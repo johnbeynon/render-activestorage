@@ -1,7 +1,7 @@
 databases:
   - name: render-activestorage
-    databaseName: render-activestorage
-    user: render-activestorage
+    databaseName: renderactivestorage
+    user: renderactivestorage
 
 services:
   - type: web
