@@ -1,0 +1,24 @@
+databases:
+  - name: render-activestorage
+    databaseName: render-activestorage
+    user: render-activestorage
+
+services:
+  - type: web
+    name: render-activestorage
+    env: ruby
+    disk:
+      name: render-activestorage-data
+      mountPath: /opt/activestorage-data
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: render-activestorage
+          property: connectionString
+      - key: SECRET_KEY_BASE
+        generateValue: true
+
